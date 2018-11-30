@@ -5,6 +5,10 @@ export interface Mutations {
   addMessages: {
     value: string;
   };
+
+  setChannels: {
+    value: string[];
+  }
 }
 
 export const mutations: DefineMutations<Mutations, State> = {
@@ -14,5 +18,9 @@ export const mutations: DefineMutations<Mutations, State> = {
     for (var i=0; i<8; i++){ id += c[Math.floor(Math.random()*c.length)]}
     state.messages.push({ id: id, message: value});
   },
+
+  setChannels(state, { value }) {
+    state.channels = value;
+  }
 
 };

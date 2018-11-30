@@ -4,18 +4,24 @@ import Component from 'vue-class-component'
 
 @Component({})
 export default class Chat extends Vue {
-   protected channels: string[] = ["general", "random"];
-   protected message: string = "test";
-   protected messages: string[] = [];
+  protected channels: string[] = this.$store.state.chat.channels;
+  protected message: string = "test";
+  protected messages: string[] = this.$store.state.chat.messages;
 
-   constructor() {
-     super();
-     this.messages = [];
-   }
+  constructor() {
+    super();
+  }
+
+  created() {
+    this.get_channels();
+  }
 
   send_message() {
     this.$store.dispatch('chat/pushMessages', { value: this.message });
-    this.messages = this.$store.state.chat.messages;
     this.message = "";
+  }
+
+  get_channels() {
+    this.$store.dispatch('chat/fetchChannels', { })
   }
 }

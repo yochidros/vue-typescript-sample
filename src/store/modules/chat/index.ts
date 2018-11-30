@@ -12,11 +12,13 @@ export interface State {
     id: string,
     message: string
   }>;
+  channels: string[];
 }
 
 export function createChatStore() {
   const state: State = {
-    messages: []
+    messages: [],
+    channels: []
   };
 
   return {
